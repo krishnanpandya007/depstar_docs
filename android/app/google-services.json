@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "729466004956",
+    "project_id": "depstar-docs",
+    "storage_bucket": "depstar-docs.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729466004956:android:0de016ada3a58238531b19",
+        "android_client_info": {
+          "package_name": "com.example.depstar_docs"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBnlDpoiQIIM-g-paMYxXOv3101_8-6JCE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
