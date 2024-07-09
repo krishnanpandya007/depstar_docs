@@ -1,4 +1,5 @@
 import 'package:depstar_docs/auth_controller.dart';
+import 'package:depstar_docs/forget_passowrd.dart';
 import 'package:depstar_docs/signup.dart';
 import 'package:flutter/material.dart';
 
@@ -18,6 +19,13 @@ class _SignInState extends State<SignIn> {
       TextEditingController(text: "");
 
   @override
+  void dispose() {
+    super.dispose();
+    emailcontroller.dispose();
+    passwordcontroller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -33,7 +41,7 @@ class _SignInState extends State<SignIn> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/logo.jpg', // Path to your asset
+                      'assets/logo.png', // Path to your asset
                       height: 100, // Adjust the height as needed
                     ),
                     const SizedBox(height: 20),
@@ -126,7 +134,14 @@ class _SignInState extends State<SignIn> {
                       child: const Text("Don't have an account? Sign Up"),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ForgetPassowrd(),
+                          ),
+                        );
+                      },
                       child: const Text('Forgot Password?'),
                     ),
                   ],

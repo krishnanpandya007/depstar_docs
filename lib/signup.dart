@@ -18,6 +18,13 @@ class _SignUpState extends State<SignUp> {
   final TextEditingController namecontroller = TextEditingController(text: "");
 
   @override
+  void dispose() {
+    super.dispose();
+    emailcontroller.dispose();
+    passwordcontroller.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
@@ -33,7 +40,7 @@ class _SignUpState extends State<SignUp> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Image.asset(
-                      'assets/logo.jpg',
+                      'assets/logo.png',
                       height: 100,
                     ),
                     const SizedBox(height: 20),

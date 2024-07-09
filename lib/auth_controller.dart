@@ -74,4 +74,16 @@ class AuthService {
     Navigator.pushReplacement(context,
         MaterialPageRoute(builder: (BuildContext context) => SignIn()));
   }
+
+  Future<void> resetpassword({required String email}) async {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    Fluttertoast.showToast(
+      msg: "Password Recovery Link sent Sucssecfuly",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.SNACKBAR,
+      backgroundColor: Colors.black54,
+      textColor: Colors.white,
+      fontSize: 14.0,
+    );
+  }
 }
