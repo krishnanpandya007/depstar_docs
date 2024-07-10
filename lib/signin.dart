@@ -46,7 +46,7 @@ class _SignInState extends State<SignIn> {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'Welcome To Charusat Docs',
+                      'Welcome To Depstar Docs',
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                       textAlign: TextAlign.center,
@@ -127,7 +127,7 @@ class _SignInState extends State<SignIn> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SignUp(),
+                            builder: (context) => const SignUp(),
                           ),
                         );
                       },
@@ -138,7 +138,7 @@ class _SignInState extends State<SignIn> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ForgetPassowrd(),
+                            builder: (context) => const ForgetPassowrd(),
                           ),
                         );
                       },

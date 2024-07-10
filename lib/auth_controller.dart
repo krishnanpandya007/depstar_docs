@@ -1,5 +1,7 @@
-import 'package:depstar_docs/home.dart';
+// ignore_for_file: avoid_print, use_build_context_synchronously
+
 import 'package:depstar_docs/signin.dart';
+import 'package:depstar_docs/splash_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -16,9 +18,13 @@ class AuthService {
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-              builder: (BuildContext context) => const MyHomePage()));
+        // ignore: duplicate_ignore
+        // ignore: use_build_context_synchronously
+        context,
+        MaterialPageRoute(
+          builder: (BuildContext context) => const SignIn(),
+        ),
+      );
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'weak-password') {
@@ -34,7 +40,9 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 14.0,
       );
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<void> signin(
@@ -49,7 +57,7 @@ class AuthService {
       Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-              builder: (BuildContext context) => const MyHomePage()));
+              builder: (BuildContext context) => const SplashScreen()));
     } on FirebaseAuthException catch (e) {
       String message = '';
       if (e.code == 'invalid-email') {
@@ -65,14 +73,20 @@ class AuthService {
         textColor: Colors.white,
         fontSize: 14.0,
       );
-    } catch (e) {}
+    } catch (e) {
+      print(e.toString());
+    }
   }
 
   Future<void> signout({required BuildContext context}) async {
     await FirebaseAuth.instance.signOut();
     await Future.delayed(const Duration(seconds: 1));
-    Navigator.pushReplacement(context,
-        MaterialPageRoute(builder: (BuildContext context) => SignIn()));
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (BuildContext context) => const SignIn(),
+      ),
+    );
   }
 
   Future<void> resetpassword({required String email}) async {

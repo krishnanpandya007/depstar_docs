@@ -45,7 +45,7 @@ class _SignUpState extends State<SignUp> {
                     ),
                     const SizedBox(height: 20),
                     const Text(
-                      'Charusat Docs',
+                      'Depstar Docs',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
@@ -146,7 +146,7 @@ class _SignUpState extends State<SignUp> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => SignIn(),
+                            builder: (context) => const SignIn(),
                           ),
                         );
                       },

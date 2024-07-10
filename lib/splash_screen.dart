@@ -1,38 +1,90 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:async';
-import 'package:depstar_docs/home.dart';
+import 'dart:convert';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:depstar_docs/commete.dart';
 import 'package:depstar_docs/signin.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
   @override
-  _SplashScreenState createState() => _SplashScreenState();
+  State<SplashScreen> createState() => _SplashScreenState();
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool dataLoaded = false;
+  Map<String, dynamic> globalMap = {};
+  Map<String, dynamic> contactMap = {};
+
+  
+
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 3), () {
-      User? user = FirebaseAuth.instance.currentUser;
+    // load data
+    loadData() async {
+    FirebaseFirestore db = FirebaseFirestore.instance;
 
-      if (user != null) {
-        // User is signed in
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => MyHomePage()));
-      } else {
-        // User is not signed in
-        Navigator.of(context)
-            .pushReplacement(MaterialPageRoute(builder: (_) => SignIn()));
+    Timer(const Duration(seconds: 2), () {});
+    await db.collection("Comeetee").get().then((event) {
+      print(event.docs);
+      for (var doc in event.docs) {
+        print("${doc.id} => ${doc.data()}");
+        globalMap[doc.id] = jsonDecode(doc.data()["child"]);
       }
     });
+    await db.collection("Contact").get().then((event) {
+      for (var doc in event.docs) {
+        contactMap[doc.id] = jsonDecode(doc.data()["child"]);
+      }
+    });
+
+    print("HelloPrinter:::");
+
+    print(globalMap);
+
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: ((context) => CometeePage(
+              navigationStack:  [],
+              globalMap: globalMap,
+              contactMap: contactMap,
+            ))));
+  }
+    User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      loadData();
+    } else {
+      Future.delayed(
+        Duration.zero,
+        () async {
+          Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (_) => const SignIn(),
+            ),
+          );
+        },
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Center(
-        child: Image.asset('assets/logo.png'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircularProgressIndicator(),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text('DEPSTAR DOCS'),
+          ],
+        ),
       ),
     );
   }
