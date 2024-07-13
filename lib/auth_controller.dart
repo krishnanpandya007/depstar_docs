@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_print, use_build_context_synchronously
-
 import 'package:depstar_docs/signin.dart';
 import 'package:depstar_docs/splash_screen.dart';
+import 'package:depstar_docs/verify.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -18,11 +18,9 @@ class AuthService {
 
       await Future.delayed(const Duration(seconds: 1));
       Navigator.pushReplacement(
-        // ignore: duplicate_ignore
-        // ignore: use_build_context_synchronously
         context,
         MaterialPageRoute(
-          builder: (BuildContext context) => const SignIn(),
+          builder: (BuildContext context) => const Verify(),
         ),
       );
     } on FirebaseAuthException catch (e) {
@@ -99,5 +97,14 @@ class AuthService {
       textColor: Colors.white,
       fontSize: 14.0,
     );
+  }
+
+  Future<void> emailverification() async {
+    try {
+      await FirebaseAuth.instance.currentUser?.sendEmailVerification();
+      print("Resent link is called");
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
