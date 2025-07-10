@@ -1,16 +1,27 @@
-# depstar_docs
+# 📚 DEPSTAR Docs
 
-A new Flutter project.
+A mobile-first documentation and communication platform built using **Flutter** and **Supabase**, designed for the Department of Computer Engineering (DEPSTAR) at CHARUSAT.  
+It streamlines academic workflows by providing centralized access to timetables, notices, and internal communications for students and faculty.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## 🚀 Features
 
-A few resources to get you started if this is your first Flutter project:
+- 📰 Access department notices and circulars in real time  
+- 📅 View personalized timetables for students and staff  
+- 🧾 Upload and manage documents through cloud storage  
+- 🔒 Secure authentication and role-based access (Admin, Faculty, Student)  
+- 📱 Clean, responsive UI for smooth mobile experience  
+- 🌐 Backend-less development powered by Supabase
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🧱 Tech Stack
+
+| Layer        | Technologies Used                 |
+|--------------|-----------------------------------|
+| Frontend     | Flutter, Dart                     |
+| Backend/API  | Supabase (PostgreSQL, Auth, Storage, Realtime DB) |
+| Authentication | Supabase Auth                   |
+| Hosting/DB   | Supabase Cloud                    |
+| Dev Tools    | VS Code, GitHub, Android Studio   |
